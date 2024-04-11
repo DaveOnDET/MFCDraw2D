@@ -1,0 +1,4 @@
+#pragma once
+#include "BaseEditor.h"
+#include "LineEditor.h"
+#include "CircleEditor.h"
