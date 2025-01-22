@@ -1,0 +1,26 @@
+HKCR
+{
+	Shape.import.1 = s 'ATLShape class'
+	{
+		CLSID = s '{e3282751-55c4-405a-b290-b6acd22a316c}'
+	}
+	Shape.import = s 'ATLShape class'
+	{		
+		CurVer = s 'Shape.import.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {e3282751-55c4-405a-b290-b6acd22a316c} = s 'ATLShape class'
+		{
+			ProgID = s 'Shape.import.1'
+			VersionIndependentProgID = s 'Shape.import'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{c25cbe06-94c7-422c-950e-ddab8f3df68a}'
+			Version = s '1.0'
+		}
+	}
+}

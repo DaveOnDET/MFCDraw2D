@@ -1,0 +1,62 @@
+﻿// ATLProjectT.idl: ATLProjectT 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 生成类型库(ATLProjectT.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(a817e7a2-43fa-11d0-9e44-00aa00b6770a),
+	dual,
+	pointer_default(unique)
+]
+interface IComponentRegistrar : IDispatch
+{
+	[id(1)]	HRESULT Attach([in] BSTR bstrPath);
+	[id(2)]	HRESULT RegisterAll();
+	[id(3)]	HRESULT UnregisterAll();
+	[id(4)]	HRESULT GetComponents([out] SAFEARRAY(BSTR)* pbstrCLSIDs, [out] SAFEARRAY(BSTR)* pbstrDescriptions);
+	[id(5)]	HRESULT RegisterComponent([in] BSTR bstrCLSID);
+	[id(6)] HRESULT UnregisterComponent([in] BSTR bstrCLSID);
+};
+
+[
+	object,
+	uuid(220c2002-0896-46a1-b2ba-c0228a6749e5),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IATLShape : IDispatch
+{
+	[id(1)] HRESULT TestAdd([in] FLOAT a, [in] FLOAT b);
+	[id(2)] HRESULT SplitCirclePolygon180([in] LONG r, [in] LONG cx, [in] LONG cy, [out] LONG* pCoord);
+};
+[
+	uuid(c25cbe06-94c7-422c-950e-ddab8f3df68a),
+	version(1.0),
+	custom(a817e7a1-43fa-11d0-9e44-00aa00b6770a,"{d36dca33-0ca4-4bba-83fb-7f2119c182b8}")
+]
+library ATLProjectTLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(d36dca33-0ca4-4bba-83fb-7f2119c182b8)
+	]
+	coclass CompReg
+	{
+		[default] interface IComponentRegistrar;
+	};
+	[
+		uuid(e3282751-55c4-405a-b290-b6acd22a316c)
+	]
+	coclass ATLShape
+	{
+		[default] interface IATLShape;
+	};
+};
+
+import "shobjidl.idl";
