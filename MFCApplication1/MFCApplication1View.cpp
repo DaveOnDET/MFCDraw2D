@@ -24,7 +24,7 @@
 
 #include <atlbase.h>
 #include "../ATLProjectT/ATLProjectT_i.h"
-#import "../Debug/ATLProjectT.dll" 
+//#import "../Debug/ATLProjectT.dll" 
 // CMFCApplication1View
 
 IMPLEMENT_DYNCREATE(CMFCApplication1View, CView)
@@ -42,6 +42,21 @@ BEGIN_MESSAGE_MAP(CMFCApplication1View, CView)
 	ON_COMMAND(ID_PAINT_ARC, &CMFCApplication1View::OnArcToolBtn)
 END_MESSAGE_MAP()
 
+void TestComFunciton(){
+
+	//测试com
+	CoInitialize(NULL);
+	CComPtr<IATLShape> pshape;
+	if (SUCCEEDED(pshape.CoCreateInstance(OLESTR("Shape.import")))) {
+
+		LONG cood[360];
+		auto rs = pshape->SplitCirclePolygon180(50, 100, 100, cood);
+		if (SUCCEEDED(rs)) {
+			MessageBox(NULL,_T("com 调用成功"), _T("提示"),MB_OK);
+		}
+	}
+	CoUninitialize();
+}
 // CMFCApplication1View 构造/析构
 
 CMFCApplication1View::CMFCApplication1View() noexcept
@@ -174,22 +189,10 @@ void CMFCApplication1View::OnLineToolBtn()
 
 void CMFCApplication1View::OnRectToolBtn()
 {
-	//测试com
-	CoInitialize(NULL);
-	CComPtr<IATLShape> pshape;
-	if (SUCCEEDED(pshape.CoCreateInstance(OLESTR("Shape.import")))){
-
-		LONG cood[360];
-		auto rs = pshape->SplitCirclePolygon180(50, 100, 100, cood);
-		if (SUCCEEDED(rs)) {
-			//创建圆
-			auto shp = new TestPolyLine(cood, 180);
-			m_Map->InsertShape(shp);
-			Invalidate();
-			MessageBox(_T("com 调用成功"));
-		}
-	}
-	CoUninitialize();
+	if (m_Map == nullptr)
+		return;
+	auto editor = new RectEditor(m_Map);
+	setEditor(editor);
 }
 
 void CMFCApplication1View::OnArcToolBtn()
@@ -248,6 +251,10 @@ void CMFCApplication1View::OnLButtonDown(UINT nFlags, CPoint point)
 	else if (bShape && bShape->IsKindOf(CircleShape::GetThisClass())) {
 		//创建编辑器
 		edtor = new CircleEditor(m_Map);
+	}
+	else if (bShape && bShape->IsKindOf(RectShape::GetThisClass())) {
+		//创建编辑器
+		edtor = new RectEditor(m_Map);
 	}
 	if (edtor) {
 		edtor->loadShape(bShape);

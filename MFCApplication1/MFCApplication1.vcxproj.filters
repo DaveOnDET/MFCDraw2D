@@ -87,6 +87,12 @@
     <ClInclude Include="Shapes\TestPolyLine.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Shapes\RectShape.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Editors\RectEditor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCApplication1.cpp">
@@ -141,6 +147,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Shapes\TestPolyLine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes\RectShape.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Editors\RectEditor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

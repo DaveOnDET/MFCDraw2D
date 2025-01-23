@@ -54,6 +54,8 @@ void BaseEditor::draw(CDC* pDC)
     onDraw(pDC);
     pDC->SelectObject(pOldPen);
     pDC->SelectObject(pOldBrush);
+    //»æÖÆÊÖ±ú
+    onDrawHandlers(pDC);
 }
 
 int BaseEditor::keyEdit(int nChar, int nRepCnt, int nFlags)
@@ -109,4 +111,18 @@ void BaseEditor::setCursor(EditCursor id)
 {
     auto hcur=AfxGetApp()->LoadStandardCursor(gCURSORS[id]);
     SetCursor(hcur);
+}
+
+void BaseEditor::onDrawHandlers(CDC* pDC)
+{ // Make a couple of pens.
+    CPen penGrey;
+    penGrey.CreatePen(PS_SOLID, 1, RGB(125, 125, 125));
+    CPen* pOldPen = pDC->SelectObject(&penGrey);
+    const int MarkRadius = 5;
+    for (int i = 0; i < m_Handlers.GetCount(); i++)
+    {
+        CRect absRect(m_Handlers[i].x - MarkRadius, m_Handlers[i].y - MarkRadius, m_Handlers[i].x + MarkRadius, m_Handlers[i].y + MarkRadius);
+        pDC->Ellipse(absRect);
+    }
+    pDC->SelectObject(pOldPen);
 }

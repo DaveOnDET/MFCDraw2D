@@ -73,6 +73,8 @@ protected:
 	virtual void onDraw(CDC* pDC) {}
 	//设置光标
 	void setCursor(EditCursor cursor);
+	//绘制手柄
+	void onDrawHandlers(CDC* pDC);
 protected:
 	bool m_bCreating;
 	//是否完成第一次点击事件
@@ -88,5 +90,7 @@ protected:
 
 	BaseShape* m_AbsorbShape;
 	CPoint m_AbsorbPt;
+
+	CArray<CPoint> m_Handlers;
 };
 

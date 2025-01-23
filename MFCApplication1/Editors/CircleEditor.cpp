@@ -19,6 +19,7 @@ int CircleEditor::onMouseEditing(int msg, CPoint point)
 		int r = m_size.cx;
 		switch (msg) {
 		case WM_LBUTTONDOWN:
+			m_size = !m_bClickFirst ? CSize() : m_size;
 			m_bClickFirst = !m_bClickFirst;
 			m_firstPt = m_bClickFirst ? point : m_firstPt;
 			if (!m_bClickFirst) {
@@ -73,6 +74,12 @@ void CircleEditor::onLoadShape()
 	auto rect = m_selectShape->GetRect();
 	m_firstPt = rect.CenterPoint();
 	m_size = CSize(rect.Width() / 2, rect.Height() / 2);	
+	//add handlers
+	m_Handlers.RemoveAll();
+	m_Handlers.Add(CPoint(rect.left, m_firstPt.y));
+	m_Handlers.Add(CPoint(rect.right, m_firstPt.y));
+	m_Handlers.Add(CPoint(m_firstPt.x, rect.top));
+	m_Handlers.Add(CPoint(m_firstPt.x, rect.bottom));
 }
 
 CRect CircleEditor::calcRect()

@@ -69,4 +69,9 @@ void LineEditor::onLoadShape()
 	pshape->GetPointList(pts);
 	m_firstPt = pts.GetHead();
 	m_secondPt = pts.GetTail();
+
+	//add handlers
+	m_Handlers.RemoveAll();
+	m_Handlers.Add(m_firstPt);
+	m_Handlers.Add(m_secondPt);
 }

@@ -116,6 +116,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>.\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -167,6 +169,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>.\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -190,6 +194,7 @@
     <ClInclude Include="Editors\CircleEditor.h" />
     <ClInclude Include="Editors\Editors.h" />
     <ClInclude Include="Editors\LineEditor.h" />
+    <ClInclude Include="Editors\RectEditor.h" />
     <ClInclude Include="FileView.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Geomotry2d\olcUTIL_Geometry2D.h" />
@@ -204,6 +209,7 @@
     <ClInclude Include="Shapes\BaseShape.h" />
     <ClInclude Include="Shapes\CircleShape.h" />
     <ClInclude Include="Shapes\LineShape.h" />
+    <ClInclude Include="Shapes\RectShape.h" />
     <ClInclude Include="Shapes\ShapeMap.h" />
     <ClInclude Include="Shapes\Shapes.h" />
     <ClInclude Include="Shapes\TestPolyLine.h" />
@@ -214,6 +220,7 @@
     <ClCompile Include="Editors\BaseEditor.cpp" />
     <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="Editors\CircleEditor.cpp" />
+    <ClCompile Include="Editors\RectEditor.cpp" />
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="Editors\LineEditor.cpp" />
     <ClCompile Include="MainFrm.cpp" />
@@ -231,6 +238,7 @@
     <ClCompile Include="Shapes\BaseShape.cpp" />
     <ClCompile Include="Shapes\CircleShape.cpp" />
     <ClCompile Include="Shapes\LineShape.cpp" />
+    <ClCompile Include="Shapes\RectShape.cpp" />
     <ClCompile Include="Shapes\ShapeMap.cpp" />
     <ClCompile Include="Shapes\TestPolyLine.cpp" />
     <ClCompile Include="ViewTree.cpp" />

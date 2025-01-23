@@ -17,7 +17,7 @@ void ShapeMap::Serialize(CArchive& ar)
         POSITION pos = m_shapeList.GetHeadPosition();
         while (pos != NULL)
         {
-            BaseShape* shape = m_shapeList.GetNext(pos);
+            CObject* shape = m_shapeList.GetNext(pos);
             ar << shape;
         }
     }
@@ -29,6 +29,7 @@ void ShapeMap::Serialize(CArchive& ar)
         for (int i = 0; i < shapeSize; i++){
             CObject* child = nullptr;
             ar >> child;
+            ASSERT(child);
             auto shape = dynamic_cast<BaseShape*>(child);
             InsertShape(shape);
         }
@@ -66,7 +67,10 @@ void ShapeMap::RemoveShape(BaseShape* shape)
 {
     auto pos = m_shapeList.Find(shape);
     if (pos != NULL)
+    {
         m_shapeList.RemoveAt(pos);
+        delete shape;
+    }
 }
 
 BaseShape* ShapeMap::Absorb(const CPoint& pt, CPoint* ptNear, float tol)
